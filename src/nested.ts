@@ -31,7 +31,12 @@ export function getNonEmptyQuestions(questions: Question[]): Question[] {
  */
 export function findQuestion(
     questions: Question[],
+<<<<<<<<< Temporary merge branch 1
     id: number
+): Question | null {
+    return null;
+=========
+    id: number,
 ): Question | null {
     return questions.find((question) => question.id === id) || null;
 }
@@ -124,9 +129,13 @@ export function publishAll(questions: Question[]): Question[] {
  * are the same type. They can be any type, as long as they are all the SAME type.
  */
 export function sameType(questions: Question[]): boolean {
-    return questions.length === 0
-        ? true
-        : questions.every((q) => q.type === questions[0].type);
+<<<<<<<<< Temporary merge branch 1
+    return false;
+=========
+    return questions.length === 0 ?
+            true
+        :   questions.every((q) => q.type === questions[0].type);
+>>>>>>>>> Temporary merge branch 2
 }
 
 /***
@@ -138,7 +147,14 @@ export function addNewQuestion(
     questions: Question[],
     id: number,
     name: string,
+<<<<<<<<< Temporary merge branch 1
     type: QuestionType
+): Question[] {
+    return [];
+}
+
+=========
+    type: QuestionType,
 ): Question[] {
     return [...questions, makeBlankQuestion(id, name, type)];
 }
@@ -150,7 +166,12 @@ export function addNewQuestion(
 export function renameQuestionById(
     questions: Question[],
     targetId: number,
+<<<<<<<<< Temporary merge branch 1
     newName: string
+): Question[] {
+    return [];
+=========
+    newName: string,
 ): Question[] {
     return questions.map((q) =>
         q.id === targetId ? { ...q, name: newName } : q
@@ -167,7 +188,12 @@ export function renameQuestionById(
 export function changeQuestionTypeById(
     questions: Question[],
     targetId: number,
+<<<<<<<<< Temporary merge branch 1
     newQuestionType: QuestionType
+): Question[] {
+    return [];
+=========
+    newQuestionType: QuestionType,
 ): Question[] {
     return questions.map((q) =>
         q.id === targetId
@@ -214,7 +240,12 @@ export function editOption(
     questions: Question[],
     targetId: number,
     targetOptionIndex: number,
+<<<<<<<<< Temporary merge branch 1
     newOption: string
+) {
+    return [];
+=========
+    newOption: string,
 ): Question[] {
     return questions.map((q) =>
         q.id === targetId
@@ -239,14 +270,20 @@ export function editOption(
 export function duplicateQuestionInArray(
     questions: Question[],
     targetId: number,
+<<<<<<<<< Temporary merge branch 1
     newId: number
 ): Question[] {
+    return [];
+=========
+    newId: number,
+): Question[] {
     const index = questions.findIndex((q) => q.id === targetId);
-    return index === -1
-        ? questions
-        : [
-              ...questions.slice(0, index + 1),
-              duplicateQuestion(newId, questions[index]),
-              ...questions.slice(index + 1)
-          ];
+    return index === -1 ? questions : (
+            [
+                ...questions.slice(0, index + 1),
+                duplicateQuestion(newId, questions[index]),
+                ...questions.slice(index + 1),
+            ]
+        );
+>>>>>>>>> Temporary merge branch 2
 }
